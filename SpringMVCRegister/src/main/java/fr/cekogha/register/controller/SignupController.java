@@ -25,10 +25,8 @@ public class SignupController {
 
 
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String userInscription(@RequestParam String firstname, @RequestParam String lastname,
-			@RequestParam String username, @RequestParam String email,
-			@RequestParam String birthday, @RequestParam String password1,
-			HttpSession session, Model model) {
+	public String userInscription(@RequestParam String username, @RequestParam String email,
+			@RequestParam String password1,	HttpSession session, Model model) {
 
 		String created = LocalDate.now().toString();
 		String role = "GAMER";
@@ -39,7 +37,7 @@ public class SignupController {
 				email, password1, role, created);
 		
 		if(result.equals("USERNAME ALREADY USED")) {
-			log.warn("Registration succeed with oid = ["+result+"]");
+			log.warn("Registration failed because = ["+result+"]");
 			model.addAttribute("registerError", result);
 
 		}

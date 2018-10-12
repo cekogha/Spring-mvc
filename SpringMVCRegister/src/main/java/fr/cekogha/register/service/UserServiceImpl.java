@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	public String registerUser(String username, String email, String password, String role, String created) {
 		
 		// Check if username is already used
-		if(modelDAO.findModel(username, User.class) == null) {
+		if(modelDAO.findModel(username, User.class).getOid() == null) {
 		
 			// Save the new User
 			User user = new User(username, email, password, role, created);
