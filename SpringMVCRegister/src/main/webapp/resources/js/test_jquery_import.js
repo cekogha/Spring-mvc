@@ -1,0 +1,1 @@
+alert("Test JQUERY import OK");

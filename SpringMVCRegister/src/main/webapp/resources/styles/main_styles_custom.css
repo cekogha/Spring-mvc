@@ -66,3 +66,21 @@
 	 text-align : center;
 	 padding-bottom : 40px;
  }
+ 
+ #confirmPassword_p
+ {
+ 	display : inline;
+ 	vertical-align : super;
+ }
+ 
+ #confirmPassword_div
+ {
+ 	text-align : left;
+ }
+ 
+ #confirm_eye_icon:hover
+ {
+ 	background-color : red;
+ }
+ 
+ 
