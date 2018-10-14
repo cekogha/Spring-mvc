@@ -10,6 +10,4 @@ public interface UserService {
 
 	List<User> findAllUsers();
 
-	List<User> findUserEntries(User user);
-
 }

@@ -38,8 +38,8 @@
 
 			<!-- JSTL Code -->
 			<c:choose>
-				<c:when test="${not empty signupSucceed}">
-					<div class="sign_up_text">${signupSucceed}<a href="home">, Sign
+				<c:when test="${not empty registerSucceed}">
+					<div class="sign_up_text">${registerSucceed}<a href="home">, Sign
 							in now</a>
 					</div>
 				</c:when>
@@ -116,6 +116,7 @@
 	<%@ include file="footer.jsp"%>
 
 <script type="text/javascript" src="resources/js/jquery_validator_password.js"></script>
+<script type="text/javascript" src="resources/js/jquery_reveal_password.js"></script>
 
 </body>
 </html>

@@ -1,13 +1,4 @@
 $(document).ready(function(){
-
-	$("#confirm_eye_icon").click(
-			function(){
-				$("#confirmPassword").prop('type', 'text');
-				$("#confirm_eye_icon").removeClass('glyphicon-eye-close');
-				$("#confirm_eye_icon").addClass('glyphicon-eye-open');
-				
-			});
-
 			
 	$("#confirmPassword").keyup(
 			function(){

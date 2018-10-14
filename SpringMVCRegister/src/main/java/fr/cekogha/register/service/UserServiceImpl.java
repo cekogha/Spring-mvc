@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.cekogha.register.dao.ModelDAO;
 import fr.cekogha.register.model.User;
+import fr.cekogha.register.utils.LogUtils;
 
 @Service("userService")
 @Transactional
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	@Qualifier("modelDAOImpl")
 	private ModelDAO<User> modelDAO;
 
+	@Autowired
+	private LogUtils logUtils;
+	
 	public UserServiceImpl() {
 	}
 
@@ -33,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	public String registerUser(String username, String email, String password, String role, String created) {
 		
 		// Check if username is already used
-		if(modelDAO.findModel(username, User.class).getOid() == null) {
+		if(modelDAO.findModel(username, User.class) == null) {
 		
 			// Save the new User
 			User user = new User(username, email, password, role, created);
@@ -41,13 +45,7 @@ public class UserServiceImpl implements UserService {
 			
 			user = modelDAO.findModel(username, User.class);
 
-			if(log.isInfoEnabled()) {
-				log.info("new User register : ["+ username+"] with : "
-						+ "password = ["+password+"],"
-						+ "email = ["+email+"]"
-						+ "role = ["+role+"],"
-						+ "created = ["+created+"]");
-			}
+				logUtils.printLog_register(log, 6, user);
 			
 			return user.getOid().toString();
 		}
@@ -61,12 +59,5 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findAllUsers() { return null; }
-
-
-	/* (non-Javadoc)
-	 * @see fr.cekogha.register.service.UserService#findUserEntries(fr.cekogha.register.model.User)
-	 */
-	@Override
-	public List<User> findUserEntries(User user) { return null; }
 
 }

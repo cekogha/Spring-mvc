@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="users_collection")
@@ -19,6 +20,8 @@ public class User implements Serializable {
 	
 	private String firstname;
 	private String lastname;
+	
+	@Indexed
 	private String username;
 	private String password;
 	private String email;
