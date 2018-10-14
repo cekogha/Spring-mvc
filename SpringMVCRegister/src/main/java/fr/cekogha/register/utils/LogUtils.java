@@ -1,5 +1,9 @@
 package fr.cekogha.register.utils;
 
-public class LogUtils {
+import org.slf4j.Logger;
 
+public interface LogUtils {
+
+	public void printLog_register(Logger logger, int numLog, Object object);
+	
 }
