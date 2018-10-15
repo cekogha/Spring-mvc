@@ -1,0 +1,68 @@
+
+@charset "ISO-8859-1";
+
+/***********************/
+/*       Fonts         */
+/**********************/
+
+@font-face
+{
+	font-family: 'Only Organic';
+	src: url('../fonts/Only Organic.ttf')  format('truetype'),
+		 url('../fonts/Only Organic.otf')  format('opentype');
+}
+@font-face
+{
+	font-family: 'Mouse trap';
+	src: url('../fonts/MOUSE TRAP!.otf')  format('opentype');
+}
+
+@font-face
+{
+	font-family: 'Mystery-white';
+	src: url('../fonts/Mytery White.ttf')  format('truetype');
+}
+@font-face
+{
+	font-family: 'Mystery';
+	src: url('../fonts/mystery.ttf')  format('truetype');
+}
+
+
+/**********************/
+/*      Sign_up       */
+/**********************/
+
+.sign_up_logo
+{
+	padding : 5px;
+	text-align : center;
+}
+
+.sign_up_link
+{
+	display : block;
+	text-align : center;
+	padding : 10px;
+}
+
+
+.sign_up_footer
+{
+	display : block;
+	text-align : center;
+	padding-top : 50px;
+}
+
+ .grid_button
+ {
+	display : grid;
+  	grid-template-columns: repeat(2, 1fr);
+	grid-gap : 40px;
+ }
+ 
+ .sign_up_text
+ {
+	 text-align : center;
+	 padding-bottom : 40px;
+ }
