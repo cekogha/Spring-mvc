@@ -1,4 +1,4 @@
-package fr.cekogha.controller;
+package fr.cekogha.springmvc.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fr.cekogha.model.User;
-import fr.cekogha.service.UserService;
+import fr.cekogha.springmvc.model.User;
+import fr.cekogha.springmvc.service.UserService;
 
 @Controller
 public class LoginController {

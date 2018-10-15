@@ -1,4 +1,4 @@
-package fr.cekogha.controller;
+package fr.cekogha.springmvc.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

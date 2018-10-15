@@ -1,4 +1,4 @@
-package fr.cekogha.model;
+package fr.cekogha.springmvc.model;
 
 import java.io.Serializable;
 

@@ -25,7 +25,7 @@
 					placeholder="password" />
 				<input class="form-control btn btn-primary"	type="submit" value="Sign in" />
 				<div class="group-form grid_sign_up">
-					<a href="password_forgot">Password forgot?</a> | <a href="signup">Sign up</a>
+					<a href="#">Password forgot?</a> | <a href="#">Sign up</a>
 				</div>
 			</form>
 		</div>

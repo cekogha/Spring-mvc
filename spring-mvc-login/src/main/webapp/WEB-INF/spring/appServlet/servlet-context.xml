@@ -21,11 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="fr.cekogha.controller" />
-	<context:component-scan base-package="fr.cekogha.service" />
-	<context:component-scan base-package="fr.cekogha.dao" />
-	<context:component-scan base-package="fr.cekogha.model" />
-	
-	
+	<context:component-scan base-package="fr.cekogha.springmvc.controller" />
+	<context:component-scan base-package="fr.cekogha.springmvc.service" />
+	<context:component-scan base-package="fr.cekogha.springmvc.dao" />
+	<context:component-scan base-package="fr.cekogha.springmvc.model" />
 	
 </beans:beans>
