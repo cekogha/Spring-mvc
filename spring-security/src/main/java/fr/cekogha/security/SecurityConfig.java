@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 
 @Configuration
 @EnableWebSecurity
@@ -14,33 +15,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	public void globalConfig(AuthenticationManagerBuilder auth) throws Exception
 	{
-
 		// The users are in memory, configure in the java code
-		// User n°1
+		// User n°1 : Admin
 		auth.inMemoryAuthentication().withUser("admin")
-									.password("123")
-									.roles("ROLE", "PROF"); 
+		.password("{noop}123").roles("ADMIN", "PROF"); 
+		
+		// User n°2 : Prof
+		auth.inMemoryAuthentication()
+		.withUser("prof1").password("234").roles("PROF"); 
 
-		// User n°2
-		auth.inMemoryAuthentication().withUser("prof1")
-									.password("234")
-									.roles("PROF"); 
+		// User n°3 : Student
+		auth.inMemoryAuthentication()
+		.withUser("std1").password("321").roles("STUDENT"); 
 
-		// User n°3
-		auth.inMemoryAuthentication().withUser("std1")
-									.password("321")
-									.roles("STUDENT"); 
-
-		// User n°4
-		auth.inMemoryAuthentication().withUser("scho1")
-									.password("432")
-									.roles("SCHOOLING"); 
-
+		// User n°4 : Schooling
+		auth.inMemoryAuthentication()
+		.withUser("scho1").password("432").roles("SCHOOLING"); 
 
 	}
 	
-	
-	protected  void configure(HttpSecurity http) throws Exception
+	@Override
+	protected void configure(HttpSecurity http) throws Exception
 	{
 		http.authorizeRequests()
 				.anyRequest()
@@ -51,4 +46,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.permitAll();
 		
 	}
+		
 }
