@@ -1,48 +1,52 @@
 package fr.cekogha.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	public void globalConfig(AuthenticationManagerBuilder auth) throws Exception
+	public void globalConfig(AuthenticationManagerBuilder auth, DataSource datasource) throws Exception
 	{
-		// The users are in memory, configure in the java code
-		// User n°1 : Admin
-		auth.inMemoryAuthentication().withUser("admin")
-		.password("{noop}123").roles("ADMIN", "PROF"); 
-		
-		// User n°2 : Prof
-		auth.inMemoryAuthentication()
-		.withUser("prof1").password("234").roles("PROF"); 
-
-		// User n°3 : Student
-		auth.inMemoryAuthentication()
-		.withUser("std1").password("321").roles("STUDENT"); 
-
-		// User n°4 : Schooling
-		auth.inMemoryAuthentication()
-		.withUser("scho1").password("432").roles("SCHOOLING"); 
-
+		auth.jdbcAuthentication()
+			.dataSource(datasource)
+			.usersByUsernameQuery("select username as principal, password as credentials, true from users where username = ?")
+			.authoritiesByUsernameQuery("select users_username as principal, roles_role as role from users_roles where users_username = ?")
+			.passwordEncoder(NoOpPasswordEncoder.getInstance())
+			.rolePrefix("ROLE_");
+			
 	}
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
-		http.authorizeRequests()
+		http
+		.csrf().disable()
+		.authorizeRequests()
+				.antMatchers("/css/**","/js/**","/img/**", "/fonts/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
+				.permitAll()
+				.defaultSuccessUrl("/index.html")  // static page
+			.and()
+				.logout()
+				.invalidateHttpSession(true)
+				.logoutUrl("/logout")
 				.permitAll();
 		
 	}
